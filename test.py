@@ -17,6 +17,9 @@ cat1._experience.add_exp(1000)
 
 print(cat1.inventory.backpack)
 print(cat2.inventory.backpack)
+gloves = Gloves1()
+cat1.inventory.add(gloves)
+cat1.inventory.put_on(gloves)
 print(cat1.inventory.slots)
 print(cat2.inventory.slots)
 
