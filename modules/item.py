@@ -1,7 +1,8 @@
 from modules.animal import Fighter
 from modules.bults import BaseItem, Slot
 from modules.tools import deepcopy
-from modules.exceptions import NotInInventoryError, CantWearError, NotEnoughSpaceException, UnexpectedSlotException, WrongItemError
+from modules.exceptions import NotInInventoryError, CantWearError,\
+    NotEnoughSpaceException, UnexpectedSlotException, WrongItemError
 
 
 class Item(BaseItem):

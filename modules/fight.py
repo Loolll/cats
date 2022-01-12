@@ -1,9 +1,10 @@
 from modules.place import Place
 from modules.animal import Leader
 from modules.exceptions import AlreadyInFightException
+from abc import ABC, abstractmethod
 
 
-class AbstractFight:
+class AbstractFight(ABC):
     active_leaders = set()
     def __init__(self, leader1: Leader, leader2: Leader, place: Place):
         if leader1 in AbstractFight.active_leaders or leader2 in AbstractFight.active_leaders:
@@ -14,6 +15,7 @@ class AbstractFight:
         AbstractFight.active_leaders.add(leader2)
         self.place = place
 
+    @abstractmethod
     def __call__(self, *args, **kwargs):
         with self.leader1 as leader1, self.leader2 as leader2:
             winner = self._fight_loop(leader1,leader2)
@@ -22,6 +24,7 @@ class AbstractFight:
             else:
                 pass
 
+    @abstractmethod
     def _fight_loop(self, leader1: Leader, leader2: Leader) -> Leader:
         while not leader1.defeated and not leader2.defeated:
             self._first_move()
@@ -30,9 +33,10 @@ class AbstractFight:
             return leader1
         return leader2
 
+    @abstractmethod
     def _first_move(self):
         pass
 
+    @abstractmethod
     def _second_move(self):
         pass
-

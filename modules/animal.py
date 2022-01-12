@@ -1,12 +1,14 @@
 from modules.ability import PassiveBoostAbility, ActiveBoostAbility, ActiveAbility
 from modules.bults import BaseAnimal, BoostType
 from modules.exceptions import *
+from modules.features import LeaderExperience
 from modules.place import Place
 from modules.tools import deepcopy
-from modules.features import LeaderExperience
 
 
 class Animal(BaseAnimal):
+    """ Provides base entity of alive object """
+
     def __init__(self, name: str, age: int, color: str):
         self.__name = name
         self.__age = age
@@ -29,6 +31,8 @@ class Animal(BaseAnimal):
 
 
 class Fighter(Animal):
+    """ Provides base entity of fighter object.
+        We have voice, skill tree, inventory, health, experience models in it """
     def __init__(self, name: str, age: int, color: str, health: type, experience: type,
                  voice: type, skill_tree: type, inventory: type):
         super().__init__(name=name, age=age, color=color)
@@ -125,6 +129,8 @@ class Fighter(Animal):
 
 
 class ActiveFighter:
+    """ This class is wrapper over Fighter object.
+        We should use it when fight. """
     __created = set()
 
     def __init__(self, fighter: Fighter, place: Place):
@@ -196,6 +202,7 @@ class ActiveFighter:
 
 
 class Leader(Animal):
+    """ Provides Leader for group of fighters """
     __used_fighters = set()
 
     def __init__(self, name: str, age: int, color: str, exp: int = 1,
@@ -315,8 +322,6 @@ class Leader(Animal):
             if not self.__in_with:
                 raise NotInWithError
             raise InWithError
-
-    #TODO functions after defeat another Leader
 
     @property
     def defeated(self):

@@ -6,7 +6,10 @@ from modules.features import Health, Resistance, Experience
 from modules.skills import SkillTree, PassiveSkill, ActiveSkill
 from modules.item import Inventory
 
-
+"""
+This file is example of real fighter. With self skill tree, 
+inventory, experience model, voice model etc.
+"""
 class Cat(Fighter):
     def __init__(self, name: str, age: int, color: str):
         super().__init__(name=name, age=age, color=color, health=CatHealth, experience=CatExperience,
